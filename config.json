@@ -1,0 +1,16 @@
+{
+    "enabled" : true, 
+    "blacklist_users" : [],
+    "whitelist_users" : [],
+    "reply_to_dms" : true,
+    "reply_to_groups" : false,
+    "delay_seconds" : 5,
+    "max_messages_per_hour" : 60,
+    "message_filters" : {
+        "min_length": 5,
+        "ignore_commands": true,
+        "ignore_bots": true
+    },
+    "context_window" : 20,
+    "temperature": 0.7
+}
