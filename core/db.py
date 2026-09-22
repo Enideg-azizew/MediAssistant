@@ -1,9 +1,6 @@
 """
 SQLite-backed persistence.
-
-Conversations and appointments used to live only in process memory and were
-wiped every hour — a confirmed booking could vanish before staff ever saw
-it, and a restart lost everything. Everything that matters now goes to
+Everything that matters goes to
 disk. SQLite is used synchronously but every call is routed through
 asyncio.to_thread so it never blocks the bot's event loop; at this
 application's message volume a single file-backed DB is more than enough,
@@ -81,9 +78,9 @@ async def init_schema():
         await asyncio.to_thread(_init_schema_sync)
 
 
-# ---------------------------------------------------------------------------
+
 # Conversations
-# ---------------------------------------------------------------------------
+
 def _get_conversation_sync(user_id, limit):
     with _cursor() as cur:
         cur.execute(
@@ -144,9 +141,9 @@ async def count_active_conversations(since_seconds=3600):
     return await asyncio.to_thread(_count_active_conversations_sync, since_seconds)
 
 
-# ---------------------------------------------------------------------------
+
 # Appointments (in-progress booking flow)
-# ---------------------------------------------------------------------------
+
 def _get_appointment_sync(user_id):
     with _cursor() as cur:
         cur.execute(

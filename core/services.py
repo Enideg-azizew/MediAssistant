@@ -10,9 +10,6 @@ logger = logging.getLogger("mediassistant")
 async def notify_admin_of_booking(bot, username, service_name, date_str, time_formatted, user_id):
     """Ping clinic staff when a patient confirms a booking.
 
-    Confirmed appointments are always persisted to the database regardless
-    of whether this succeeds (see core/db.py) — this is a best-effort
-    convenience notification, not the system of record.
     """
     if not ADMIN_CHAT_ID:
         return
@@ -299,10 +296,7 @@ def get_contact_text():
 **Appointments:** LabH.pythonanywhere.com/patient_portal"""
 
 def get_faq_text():
-    # NOTE: verify the local emergency number with the clinic before
-    # deploying — this was hardcoded as "911" (a US number, wrong for
-    # Ethiopia) in the original version. Confirm the correct number for
-    # your city/region.
+
     return """❓ **FAQ / ተደጋጋሚ ጥያቄዎች**
 
 **Q: Do I need a referral?**

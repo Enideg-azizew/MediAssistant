@@ -30,7 +30,7 @@ DASHBOARD_HTML = """<!DOCTYPE html>
 </head>
 
 <body>
-    <h1>🏥 Clinic Bot</h1>
+    <h1>Clinic Bot</h1>
 
     <div class="card" id="loginCard">
         <h2>Dashboard access token</h2>
@@ -132,8 +132,8 @@ async def auth_middleware(request, handler):
 
 ##SERVER
 async def api_config(request):
-    # Only expose the non-secret, dashboard-tunable subset - never the
-    # blacklist/whitelist user ID lists or anything from .env.
+    # Only expose the non-secret, dashboard-tunable subset - 
+    
     return web.json_response({
         "enabled": runtime.enabled,
         "reply_to_dms": runtime.reply_dms,

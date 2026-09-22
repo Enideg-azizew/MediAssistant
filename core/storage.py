@@ -1,10 +1,8 @@
 """
 Public storage API used by the rest of the app.
 
-Everything here is now backed by SQLite (see core/db.py) instead of plain
-in-memory dicts, so conversation history and appointments survive a
-restart and are never silently wiped. All functions are async - callers
-must await them.
+Everything here is backed by SQLite (see core/db.py).
+All functions are async - callers must await them.
 """
 from config import CONTEXT
 import core.db as db

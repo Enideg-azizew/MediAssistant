@@ -17,7 +17,7 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 
 # Token required to use the /api/* dashboard endpoints and the dashboard
 # login screen. Generate one with e.g. `python -c "import secrets;
-# print(secrets.token_urlsafe(32))"` and set it as an env var — never commit
+# print(secrets.token_urlsafe(32))"` and set it as an env var 
 # a real value.
 DASHBOARD_TOKEN = os.getenv("DASHBOARD_TOKEN", "")
 
@@ -69,7 +69,7 @@ with open(CONFIG_FILE, "r") as f:
     cfg = json.load(f)
 
 # System prompt
-SYSTEM_PROMPT = f"""You are the AI assistant for MediLab Specialty Clinic in Addis Ababa, Ethiopia.
+SYSTEM_PROMPT = f"""You are the AI assistant for MediLab Specialty Clinic in Addis Abeba.
 
 CLINIC PROFILE:
 {PROFILE}
@@ -93,8 +93,7 @@ RESPONSE LENGTH: Maximum 50 words, 3 sentences maximum.
 # AI settings
 MAX_TOKENS = 600
 
-# Model fallback chains. NOTE: verify these model IDs are still valid/current
-# with Groq and Google before deploying — provider model names and
+# Model fallback chains. NOTE: 
 # availability change over time, and a stale ID here just wastes a retry.
 GROQ_MODELS = [
     "llama-3.1-8b-instant",
@@ -113,7 +112,7 @@ GEMINI_MODELS = [
 
 ALL_MODELS = GEMINI_MODELS + GROQ_MODELS
 
-# Fixed-at-startup settings (from config.json — behavior tuning, not secrets)
+
 MIN_LENGTH = cfg["message_filters"]["min_length"]
 SKIP_COMMANDS = cfg["message_filters"]["ignore_commands"]
 SKIP_BOTS = cfg["message_filters"]["ignore_bots"]
@@ -124,11 +123,7 @@ TEMP = cfg["temperature"]
 class _RuntimeConfig:
     """Settings the dashboard can change while the bot is running.
 
-    These used to be plain module-level constants (ENABLED, BLACKLIST,
-    etc). Other modules did `from config import ENABLED`, which copies the
-    value at import time — so when the web dashboard flipped the toggle or
-    changed the rate limit, every module that had already imported the old
-    value kept using it. Wrapping them in one shared, mutable object means
+    Wrapping them in one shared, mutable object means
     every reader sees the current value.
     """
 

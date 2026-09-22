@@ -1,8 +1,10 @@
 import asyncio
 import logging
+#from .dot import load_doten #local tool 
 from dotenv import load_dotenv
 
-load_dotenv()  # populate os.environ from .env before config.py reads it
+load_dotenv()  # populate
+
 
 from aiohttp import web
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackQueryHandler
@@ -21,14 +23,6 @@ logger = logging.getLogger("mediassistant")
 
 async def housekeeping_loop():
     """Periodic cleanup task.
-
-    This replaced a job that wiped ALL conversations and ALL in-progress
-    appointments from memory every hour - which meant a patient's
-    half-finished (or even just-confirmed) booking could disappear before
-    staff ever saw it, and every restart lost everything. Now: confirmed
-    appointments live permanently in the database and are never touched
-    here; this only prunes old conversation logs and booking flows the
-    patient abandoned and never finished.
     """
     while True:
         await asyncio.sleep(6 * 3600)
@@ -71,7 +65,7 @@ async def main():
 
     logger.info("Clinic Bot is running with multilingual support!")
 
-    # Start housekeeping (non-destructive - see docstring above)
+    # Start housekeeping
     asyncio.create_task(housekeeping_loop())
 
     # Setup web dashboard

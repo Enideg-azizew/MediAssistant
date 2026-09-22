@@ -5,7 +5,7 @@ from config import SKIP_COMMANDS, SKIP_BOTS, MIN_LENGTH, runtime
 
 logger = logging.getLogger("mediassistant")
 
-###LANGUAGE
+###LANGUAGE aint 2ork
 # Amharic detection
 AMHARIC_RANGE = range(0x1200, 0x137F)  # Unicode Ethiopic block
 
@@ -29,11 +29,7 @@ msg_times = deque(maxlen=1000)
 def can_send(rate_limit=None):
     """Check if we're under the rate limit.
 
-    NOTE: previously this function required a `rate_limit` argument but was
-    always called with none, so every single incoming message raised a
-    TypeError and the bot never actually replied. It now defaults to the
-    live (dashboard-adjustable) rate limit so it works whether or not a
-    caller passes one.
+    It now defaults to the live (dashboard-adjustable) rate limit .
     """
     if rate_limit is None:
         rate_limit = runtime.rate_limit

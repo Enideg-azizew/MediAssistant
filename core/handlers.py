@@ -482,10 +482,7 @@ async def handle_appointment_callback(update: Update, context: ContextTypes.DEFA
     if data.startswith("appt_confirm_"):
         # confirm_appointment atomically moves the working row into
         # permanent history (appointment_history table) and clears it -
-        # this is what actually makes the booking durable. Previously the
-        # data was just dropped from an in-memory dict with nothing
-        # written anywhere else, so confirmed bookings could vanish
-        # before staff ever saw them.
+        
         confirmed = await confirm_appointment(user_id)
         if not confirmed:
             await query.edit_message_text(
